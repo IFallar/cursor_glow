@@ -1,0 +1,77 @@
+body{
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    background: hsl(0 0% 6%);
+}
+
+#main_card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@layer card {
+
+    #inner_card{
+        --alpha: 0.15;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        height: 390px;
+        width: 390px;
+        position: relative;
+        filter: blur(.1rem);
+        overflow: hidden;
+    }
+    
+    #inner_card::before{
+        --alpha: 1;
+        content: "";
+        position:absolute;
+        inset: 0;
+        mask:     
+            linear-gradient(white, white) 50% 0 / 100% 2px no-repeat,
+            linear-gradient(white, white) 50% 100% / 100% 2px no-repeat,
+            linear-gradient(white, white) 0 50% / 2px 100% no-repeat,
+            linear-gradient(white, white) 100% 50% / 2px 100% no-repeat;
+        overflow: hidden;
+    }
+
+    #inner_card, #inner_card::before{
+        background: radial-gradient(
+            circle at calc(var(--x) * 1px) calc(var(--y) * 1px),
+            white, rgb(83, 207, 143), 
+            transparent 100px
+        );
+        background-attachment: fixed;
+    }
+
+    #glow_div{
+        width: 150%;
+        height: 150%;
+        position: absolute;
+        border-radius: 200px;
+        background-image: conic-gradient(aquamarine, white, rgba(38, 0, 0, 0) 25deg, rgba(0, 0, 0, 0) 340deg, aquamarine);
+        rotate: 0deg;
+    }
+
+    #glow_div::before{
+        rotate: 0deg;
+    }
+
+    
+    #con_card{
+        position: absolute;
+        display: flex;
+        flex-wrap: wrap;
+        height: 384px;
+        width: 384px;
+        background-color: rgb(26, 26, 26);
+    }
+
+}
+
+
